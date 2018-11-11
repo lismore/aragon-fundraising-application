@@ -1,15 +1,12 @@
-# Aragon React Kit Boilerplate
+# Aragon Fundraising App
 
-> 🕵️ [Find more boilerplates using GitHub](https://github.com/search?q=topic:aragon-boilerplate) | 
-> ✨ [Official boilerplates](https://github.com/search?q=topic:aragon-boilerplate+org:aragon)
+This Aragon App was built using the Aragon React boilerplate code for Aragon applications.
 
-React boilerplate for Aragon applications.
-
-This boilerplate also includes a fully working example app, complete with a background worker and a front-end in React (with Aragon UI).
+This fully working aragon fundraising app, complete with a background worker and a front-end in React (with Aragon UI).
 
 ## Usage
 
-Kit support requires using the Aragon CLI with a version greater than 4.1.0.
+App support requires using the Aragon CLI with a version greater than 4.1.0.
 ```sh
 npm install -g @aragon/cli
 aragon init app react-kit
