@@ -1,5 +1,5 @@
-var CounterApp = artifacts.require('CounterApp.sol')
+var FundraisingApp = artifacts.require('FundraisingApp.sol')
 
 module.exports = function (deployer) {
-  deployer.deploy(CounterApp)
+  deployer.deploy(FundraisingApp)
 }

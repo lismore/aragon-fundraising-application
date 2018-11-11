@@ -1,9 +1,9 @@
 pragma solidity ^0.4.24;
 
-import "@aragon/os/contracts/apps/AragonApp.sol";
-import "@aragon/os/contracts/lib/math/SafeMath.sol";
+import "../node_modules/@aragon/os/contracts/apps/AragonApp.sol";
+import "../node_modules/@aragon/os/contracts/lib/math/SafeMath.sol";
 
-contract CounterApp is AragonApp {
+contract FundraisingApp is AragonApp {
     using SafeMath for uint256;
 
     /// Events

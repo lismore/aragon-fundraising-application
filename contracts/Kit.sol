@@ -1,16 +1,16 @@
 pragma solidity 0.4.24;
 
-import "@aragon/os/contracts/factory/DAOFactory.sol";
-import "@aragon/os/contracts/apm/Repo.sol";
-import "@aragon/os/contracts/lib/ens/ENS.sol";
-import "@aragon/os/contracts/lib/ens/PublicResolver.sol";
-import "@aragon/os/contracts/apm/APMNamehash.sol";
+import "../node_modules/@aragon/os/contracts/factory/DAOFactory.sol";
+import "../node_modules/@aragon/os/contracts/apm/Repo.sol";
+import "../node_modules/@aragon/os/contracts/lib/ens/ENS.sol";
+import "../node_modules/@aragon/os/contracts/lib/ens/PublicResolver.sol";
+import "../node_modules/@aragon/os/contracts/apm/APMNamehash.sol";
 
-import "@aragon/apps-voting/contracts/Voting.sol";
-import "@aragon/apps-token-manager/contracts/TokenManager.sol";
-import "@aragon/apps-shared-minime/contracts/MiniMeToken.sol";
+import "../node_modules/@aragon/apps-voting/contracts/Voting.sol";
+import "../node_modules/@aragon/apps-token-manager/contracts/TokenManager.sol";
+import "../node_modules/@aragon/apps-shared-minime/contracts/MiniMeToken.sol";
 
-import "./CounterApp.sol";
+import "./FundraisingApp.sol";
 
 contract KitBase is APMNamehash {
     ENS public ens;
@@ -19,7 +19,7 @@ contract KitBase is APMNamehash {
     event DeployInstance(address dao);
     event InstalledApp(address appProxy, bytes32 appId);
 
-    function KitBase(DAOFactory _fac, ENS _ens) {
+    function KitBase(DAOFactory _fac, ENS _ens) public {
         ens = _ens;
 
         // If no factory is passed, get it from on-chain bare-kit
@@ -45,21 +45,21 @@ contract Kit is KitBase {
     uint256 constant PCT = 10 ** 16;
     address constant ANY_ENTITY = address(-1);
 
-    function Kit(ENS ens) KitBase(DAOFactory(0), ens) {
+    function Kit(ENS ens) KitBase(DAOFactory(0), ens) public{
         tokenFactory = new MiniMeTokenFactory();
     }
 
-    function newInstance() {
+    function newInstance() public {
         Kernel dao = fac.newDAO(this);
         ACL acl = ACL(dao.acl());
         acl.createPermission(this, dao, dao.APP_MANAGER_ROLE(), this);
 
         address root = msg.sender;
-        bytes32 appId = apmNamehash("app");
+        bytes32 appId = apmNamehash("fundraisingapp.aragonpm.eth");
         bytes32 votingAppId = apmNamehash("voting");
         bytes32 tokenManagerAppId = apmNamehash("token-manager");
 
-        CounterApp app = CounterApp(dao.newAppInstance(appId, latestVersionAppBase(appId)));
+        FundraisingApp app = FundraisingApp(dao.newAppInstance(appId, latestVersionAppBase(appId)));
         Voting voting = Voting(dao.newAppInstance(votingAppId, latestVersionAppBase(votingAppId)));
         TokenManager tokenManager = TokenManager(dao.newAppInstance(tokenManagerAppId, latestVersionAppBase(tokenManagerAppId)));
 

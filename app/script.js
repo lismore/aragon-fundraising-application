@@ -1,6 +1,6 @@
 import '@babel/polyfill'
 
-import Aragon from '@aragon/client'
+import Aragon from '../node_modules/@aragon/client'
 
 const app = new Aragon()
 

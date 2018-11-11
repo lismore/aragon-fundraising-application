@@ -1,5 +1,5 @@
-const CounterApp = artifacts.require('CounterApp.sol')
+const FundraisingApp = artifacts.require('FundraisingApp.sol')
 
-contract('CounterApp', (accounts) => {
+contract('FundraisingApp', (accounts) => {
   it('should be tested')
 })
